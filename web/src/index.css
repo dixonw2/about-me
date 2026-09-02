@@ -9,33 +9,13 @@
   --sans: "Source Sans 3 Variable", Arial, sans-serif;
 
   font-family: var(--sans);
-}
-
-#navbar {
-  background: var(--navbar-bg);
-  color: var(--navbar-text);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 7rem;
-}
-
-#navbar #brand {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-#navbar #links {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  list-style: none;
-  font-size: 1.2rem;
-}
-
-#root {
   text-align: center;
 }
+
+/* 
+#root {
+  text-align: center;
+} */
 
 body {
   margin: 0;
