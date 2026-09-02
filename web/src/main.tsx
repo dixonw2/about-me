@@ -6,7 +6,7 @@ import "@fontsource-variable/source-sans-3/wght-italic.css";
 import "./index.css";
 
 import App from "./App.tsx";
-import Navbar from "./components/layout/Navbar.tsx";
+import Navbar from "./components/layout/Navbar/Navbar.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
