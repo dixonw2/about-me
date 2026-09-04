@@ -2,7 +2,7 @@
   --navbar-text: #eff1f3;
   --navbar-bg: #223843;
   --bg: #dbd3d8;
-  --text: #000000;
+  --text: #2e2d2d;
   --accent: #449dd1;
   --alt-accent: #4d8b31;
 
@@ -11,11 +11,6 @@
   font-family: var(--sans);
   text-align: center;
 }
-
-/* 
-#root {
-  text-align: center;
-} */
 
 body {
   margin: 0;
