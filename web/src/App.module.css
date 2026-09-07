@@ -10,34 +10,6 @@
   margin: 3rem auto;
 }
 
-@media (max-width: 48rem) {
-  .container {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "greeting"
-      "information"
-      "side";
-    gap: 1.5rem;
-    margin-block: 2rem;
-  }
-
-  .greeting h1 {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 40rem) {
-  .entryHeading {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
-  .entryDate {
-    white-space: normal;
-  }
-}
-
 /* #region Greeting */
 .greeting {
   display: flex;
@@ -47,7 +19,7 @@
 }
 
 .greeting h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: var(--accent);
 }
 
@@ -61,6 +33,7 @@
 .greeting p {
   margin: 0;
   text-align: center;
+  line-height: 1.2;
 }
 
 /* #endregion */
@@ -123,11 +96,14 @@
 
 .details {
   margin: 0.75rem 0 0;
-  padding-left: 1.25rem;
 }
 
 .details li + li {
   margin-top: 0.5rem;
+}
+
+ul.details {
+  padding-left: 1.25rem;
 }
 /* #endregion */
 
@@ -145,3 +121,31 @@
   border-radius: 1rem;
 }
 /* #endregion */
+
+@media (max-width: 48rem) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "greeting"
+      "information"
+      "side";
+    gap: 1.5rem;
+    margin-block: 2rem;
+  }
+
+  .greeting h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .entryHeading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .entryDate {
+    white-space: normal;
+  }
+}

@@ -11,18 +11,19 @@ const Greeting = () => {
 };
 
 const Section = ({
-  sectionName,
+  id,
+  name,
   children,
 }: {
-  sectionName: string;
+  id: string;
+  name: string;
   children: ReactNode;
 }) => {
-  const sectionId = sectionName.toLowerCase();
   return (
-    <section aria-labelledby={sectionId}>
-      <h3 id={sectionId} className={styles.sectionTitle}>
-        {sectionName}
-      </h3>
+    <section aria-labelledby={id}>
+      <h2 id={id} className={styles.sectionTitle}>
+        {name}
+      </h2>
       {children}
     </section>
   );
@@ -49,7 +50,7 @@ const SectionEntry = ({
   return (
     <div className={styles.entry}>
       <header className={styles.entryHeading}>
-        <h4 className={styles.entryTitle}>{title}</h4>
+        <h3 className={styles.entryTitle}>{title}</h3>
         <div className={styles.entryDate}>
           <time dateTime={startDate.value}>{startDate.label}</time>
           {" - "}
@@ -64,7 +65,7 @@ const SectionEntry = ({
 
 const Education = () => {
   return (
-    <Section sectionName="Education">
+    <Section id="education" name="Education">
       <SectionEntry
         title="Bachelor of Science"
         organization="Northern Kentucky University"
@@ -81,7 +82,7 @@ const Education = () => {
 
 const Experience = () => {
   return (
-    <Section sectionName="Experience">
+    <Section id="experience" name="Experience">
       <SectionEntry
         title="Software Engineer I"
         organization="Advantage Solutions"
@@ -137,7 +138,7 @@ const Experience = () => {
 
 const Skills = () => {
   return (
-    <Section sectionName="Skills">
+    <Section id="skills" name="Skills">
       <div className={styles.entry}>
         <ul className={styles.details}>
           <li>
@@ -160,7 +161,7 @@ const Skills = () => {
 
 const ProfDevelopment = () => {
   return (
-    <Section sectionName="Professional Development">
+    <Section id="professional-development" name="Professional Development">
       <SectionEntry
         title="The Ultimate React Course 2025: React, Next.js, Redux & More"
         organization="Udemy"
