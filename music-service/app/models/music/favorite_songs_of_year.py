@@ -52,11 +52,6 @@ class SongInListRead(SongBase):
     id: int
 
 
-class SongRead(SongBase):
-    id: int
-    year: int
-
-
 # endregion
 
 
