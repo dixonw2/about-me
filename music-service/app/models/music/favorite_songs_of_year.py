@@ -35,6 +35,7 @@ class Song(Base):
     year: Mapped[int] = mapped_column(
         ForeignKey("favorite_songs_of_year.lists.year", ondelete="CASCADE")
     )
+
     yearly_list: Mapped["YearlyList"] = relationship(back_populates="songs")
 
 
