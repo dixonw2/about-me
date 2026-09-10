@@ -1,5 +1,6 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import styles from "./App.module.css";
+import Container from "@/components/layout/Container/Container";
 
 const Greeting = () => {
   return (
@@ -199,34 +200,13 @@ const Profile = () => {
   );
 };
 
-const TestArea = () => {
-  const [test, setTest] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const getEndpoint = async () => {
-      const res = await fetch("/api");
-      const data = await res.json();
-      console.log(data);
-      setTest(data.message);
-      setLoading(false);
-    };
-
-    getEndpoint();
-  }, []);
-
-  return !loading && <div style={{ backgroundColor: "yellow" }}>{test}</div>;
-};
-
 const App = () => {
   return (
-    <main className={styles.container}>
+    <Container>
       <Greeting />
       <Information />
       <Profile />
-
-      <TestArea />
-    </main>
+    </Container>
   );
 };
 
