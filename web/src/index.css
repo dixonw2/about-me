@@ -17,9 +17,19 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+}
+
+.container {
+  width: calc(100% - 2rem);
+  max-width: 70rem;
+  margin: 3rem auto;
 }

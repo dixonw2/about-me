@@ -1,3 +1,14 @@
+.container {
+  composes: container from global;
+
+  display: grid;
+  grid-template-areas:
+    "greeting greeting"
+    "information side";
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 2rem 3rem;
+}
+
 /* #region Greeting */
 .greeting {
   display: flex;
@@ -111,6 +122,16 @@ ul.details {
 /* #endregion */
 
 @media (max-width: 48rem) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "greeting"
+      "information"
+      "side";
+    gap: 1.5rem;
+    margin-block: 2rem;
+  }
+
   .entryHeading {
     flex-direction: column;
     align-items: flex-start;

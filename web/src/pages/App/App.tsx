@@ -1,6 +1,5 @@
 import { type ReactNode } from "react";
 import styles from "./App.module.css";
-import Container from "@/components/layout/Container/Container";
 
 const Greeting = () => {
   return (
@@ -202,11 +201,11 @@ const Profile = () => {
 
 const App = () => {
   return (
-    <Container>
+    <main className={styles.container}>
       <Greeting />
       <Information />
       <Profile />
-    </Container>
+    </main>
   );
 };
 
