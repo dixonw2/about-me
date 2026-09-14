@@ -8,7 +8,6 @@ import "@/index.css";
 
 import App from "@/pages/App/App";
 import Projects from "@/pages/Projects/Projects";
-//import Projects from "@/pages/Projects/ProjectsCollapsible";
 import Navbar from "@/components/layout/Navbar/Navbar";
 
 createRoot(document.getElementById("root")!).render(

@@ -17,10 +17,20 @@ const Project = ({
   return (
     <section
       aria-labelledby={projectId}
-      className={`${styles.section} ${expanded ? styles.expanded : ""}`}
+      className={`${styles.section} ${expanded ? styles.sectionExpanded : ""}`}
     >
       <header
         className={styles.sectionHeading}
+        role="button"
+        tabIndex={0}
+        aria-expanded={expanded}
+        aria-controls={`${projectId}-content`}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            setExpanded((prev) => !prev);
+          }
+        }}
         onClick={() => setExpanded((prev) => !prev)}
         // Prevent multiple clicks from selecting text in the header
         onMouseDown={(event) => {
@@ -34,7 +44,9 @@ const Project = ({
         </h2>
         <h4 className={styles.sectionLanguages}>{projectTechs.join(" | ")}</h4>
       </header>
-      {expanded && children}
+      <div className={styles.projectPanel} inert={!expanded}>
+        <div className={styles.projectDetails}>{children}</div>
+      </div>
     </section>
   );
 };
@@ -145,7 +157,7 @@ const ShinrasBetterBestiary = () => {
     <Project
       projectId="shinras-better-bestiary"
       projectName="Shinra's Better Bestiary"
-      projectTechs={["C#", "Avalonia"]}
+      projectTechs={["C#", "Avalonia", "Python"]}
     >
       <ProjectDescription>
         An application to track the progress of oversouling Shinra's Bestiary in
@@ -157,6 +169,7 @@ const ShinrasBetterBestiary = () => {
         </li>
         <li>Has the ability to mark a fiend as oversouled.</li>
         <li>Provides a list of Via Infinito floors for unoversouled fiends.</li>
+        <li>Built a Media Wiki Python data scraper for fiend data.</li>
       </ProjectFeatureList>
       <GitHubLink link="https://github.com/dixonw2/ShinrasBetterBestiary" />
     </Project>
@@ -201,7 +214,7 @@ const HeretechsUtil = () => {
       </ProjectDescription>
       <ProjectFeatureList>
         <li>
-          Has a list of tasks with a varying reward stored in a MySQL database
+          Has a list of tasks with a varying reward stored in a MySQL database.
         </li>
         <li>A configurable CLI item shop.</li>
         <li>

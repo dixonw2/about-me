@@ -10,13 +10,12 @@
   margin-bottom: 0.75rem;
 }
 
+/* #region Project */
 .section {
   display: grid;
   grid-template-areas:
-    "title       title"
-    "description empty"
-    "features    link";
-  grid-template-columns: 3fr 1fr;
+    "title"
+    "content";
   border-radius: 0.75rem;
   background-color: rgba(0, 0, 0, 0.05);
   border-left: 2px solid var(--accent);
@@ -31,10 +30,11 @@
   background-color: rgb(0 0 0 / 0.1);
 }
 
-.expanded {
+.sectionExpanded {
   background-color: rgba(0, 65, 163, 0.1);
 }
 
+/* #region Heading */
 .sectionHeading {
   grid-area: title;
   display: flex;
@@ -42,6 +42,12 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+}
+
+.sectionHeading:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 0.75rem;
 }
 
 .sectionTitle {
@@ -58,6 +64,7 @@
   font-size: 1.25rem;
   opacity: 75%;
   font-weight: 400;
+  text-align: right;
 }
 
 .sectionTitle,
@@ -65,6 +72,35 @@
   padding: 0.35rem 0.65rem;
   margin-top: 0.6rem;
   margin-bottom: 0.6rem;
+}
+/* #endregion */
+
+/* #region Information */
+.projectPanel {
+  grid-area: content;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 250ms ease;
+}
+
+.sectionExpanded > .projectPanel {
+  grid-template-rows: 1fr;
+}
+
+.projectDetails {
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-areas:
+    "description ."
+    "features link";
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectPanel {
+    transition: none;
+  }
 }
 
 .sectionDescription {
@@ -114,3 +150,4 @@
   pointer-events: all;
   cursor: pointer;
 }
+/* #endregion */
