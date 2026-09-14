@@ -1,13 +1,12 @@
 .container {
+  composes: container from global;
+
   display: grid;
   grid-template-areas:
     "greeting greeting"
     "information side";
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 2rem 3rem;
-  width: calc(100% - 2rem);
-  max-width: 70rem;
-  margin: 3rem auto;
 }
 
 /* #region Greeting */
@@ -133,16 +132,14 @@ ul.details {
     margin-block: 2rem;
   }
 
-  .greeting h1 {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 40rem) {
   .entryHeading {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
+  }
+
+  .greeting h1 {
+    font-size: 3rem;
   }
 
   .entryDate {
