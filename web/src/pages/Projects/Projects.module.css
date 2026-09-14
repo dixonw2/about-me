@@ -10,26 +10,48 @@
   margin-bottom: 0.75rem;
 }
 
+.section {
+  display: grid;
+  grid-template-areas:
+    "title       title"
+    "description empty"
+    "features    link";
+  grid-template-columns: 3fr 1fr;
+  border-radius: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.section + .section {
+  margin-top: 0.75rem;
+}
+
+.section:has(.sectionHeading:hover) {
+  background-color: rgb(0 0 0 / 0.1);
+}
+
+.expanded {
+  background-color: rgba(0, 65, 163, 0.1);
+}
+
 .sectionHeading {
+  grid-area: title;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .sectionTitle {
   font-size: 2rem;
-}
-
-.sectionTitle a {
   color: var(--alt-accent);
-  text-decoration: none;
-  padding: 0.35rem 0.65rem;
   border-radius: 0.25rem;
 }
 
 .sectionTitle a:hover {
-  background-color: rgb(0 0 0 / 10%);
+  background-color: rgb(0 0 0 / 0.1);
 }
 
 .sectionLanguages {
@@ -38,12 +60,57 @@
   font-weight: 400;
 }
 
+.sectionTitle,
+.sectionLanguages {
+  padding: 0.35rem 0.65rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
 .sectionDescription {
+  grid-area: description;
   margin-top: 0;
+  margin-bottom: 0;
   padding-left: 1.5rem;
   font-size: 1.2rem;
 }
 
-.sectionList {
+.sectionFeaturesList {
+  grid-area: features;
   padding-left: 5rem;
+}
+
+.sectionLink {
+  grid-area: link;
+  align-self: end;
+  justify-self: end;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.sectionLink svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sectionLink:has(.githubHitArea:hover),
+.sectionLink:focus-visible {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.sectionLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.githubHitArea {
+  fill: transparent;
+  pointer-events: all;
+  cursor: pointer;
 }
