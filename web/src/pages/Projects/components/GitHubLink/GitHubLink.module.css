@@ -1,0 +1,34 @@
+.sectionLink {
+  grid-area: link;
+  align-self: end;
+  justify-self: end;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.sectionLink svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sectionLink:has(.githubHitArea:hover),
+.sectionLink:focus-visible {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.sectionLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.githubHitArea {
+  fill: transparent;
+  pointer-events: all;
+  cursor: pointer;
+}

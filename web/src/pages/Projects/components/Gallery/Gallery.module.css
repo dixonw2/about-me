@@ -1,0 +1,10 @@
+.gallery {
+  grid-area: images;
+  border-top: 2px solid var(--accent);
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
