@@ -55,8 +55,8 @@ const ProjectDescription = ({ children }: { children: ReactNode }) => {
   return <p className={styles.sectionDescription}>{children}</p>;
 };
 
-const ProjectFeatureList = ({ children }: { children: ReactNode }) => {
-  return <ul className={styles.sectionFeaturesList}>{children}</ul>;
+const ProjectSkillsList = ({ children }: { children: ReactNode }) => {
+  return <ul className={styles.sectionSkillsList}>{children}</ul>;
 };
 
 const GitHubLink = ({ link }: { link: string }) => {
@@ -87,7 +87,6 @@ const GitHubLink = ({ link }: { link: string }) => {
   );
 };
 
-// TODO: Change list of features to more technical aspects like how it works
 const AboutMe = () => {
   return (
     <Project
@@ -107,20 +106,20 @@ const AboutMe = () => {
         This website! A website about me, whether it's professional information
         or general hobbies and interests!
       </ProjectDescription>
-      <ProjectFeatureList>
-        <li>A general resume for the landing page.</li>
+      <ProjectSkillsList>
         <li>
-          Created to be able to learn and practice Full Stack development,
-          Docker, Kubernetes, and Microservices.
+          Created to learn and practice Full Stack development alongside Docker,
+          Kubernetes, and Microservices.
         </li>
-        <li>Uses GitHub Projects as a project management tool.</li>
-      </ProjectFeatureList>
+        <li>Web application built using React TypeScript.</li>
+        <li>Music service built using FastAPI, SQLAlchemy, and PostgreSQL. </li>
+        <li>Utilizes GitHub Projects as a project management tool.</li>
+      </ProjectSkillsList>
       <GitHubLink link="https://github.com/dixonw2/about-me" />
     </Project>
   );
 };
 
-// TODO: Change list of features to more technical aspects like how it works
 const SecretGuests = () => {
   return (
     <Project
@@ -129,29 +128,21 @@ const SecretGuests = () => {
       projectTechs={["TypeScript"]}
     >
       <ProjectDescription>
-        A plugin for the game Open Rollercoaster Tycoon 2 that allows the game
-        to spawn guests with hidden Easter Egg names.
+        A configurable plugin for the game Open Rollercoaster Tycoon 2 that
+        allows the game to spawn guests with hidden Easter Egg names.
       </ProjectDescription>
-      <ProjectFeatureList>
+      <ProjectSkillsList>
+        <li>Uses the OpenRCT2 plugin API and TypeScript.</li>
         <li>
-          Provides a whitelist/blacklist for names the player doesn't want to
-          spawn.
+          Updates config values and menu elements using functions somewhat
+          similar to React state.
         </li>
-        <li>
-          Allows the player to change the max amount of guests to spawn, how
-          guests per name, and the chance for a guest to spawn.
-        </li>
-        <li>
-          Allows the player to add custom Easter Egg names with their own
-          actions.
-        </li>
-      </ProjectFeatureList>
+      </ProjectSkillsList>
       <GitHubLink link="https://github.com/dixonw2/OpenRCT2-SecretGuests" />
     </Project>
   );
 };
 
-// TODO: Change list of features to more technical aspects like how it works
 const ShinrasBetterBestiary = () => {
   return (
     <Project
@@ -163,44 +154,21 @@ const ShinrasBetterBestiary = () => {
         An application to track the progress of oversouling Shinra's Bestiary in
         Final Fantasy X-2.
       </ProjectDescription>
-      <ProjectFeatureList>
+      <ProjectSkillsList>
         <li>
-          Replicates Shinra's Bestiary in-game using the UI framework Avalonia.
+          Replicates Shinra's Bestiary in-game using the C# UI framework
+          Avalonia.
         </li>
-        <li>Has the ability to mark a fiend as oversouled.</li>
-        <li>Provides a list of Via Infinito floors for unoversouled fiends.</li>
-        <li>Built a Media Wiki Python data scraper for fiend data.</li>
-      </ProjectFeatureList>
+        <li>
+          Fiend data JSON file built using a Python script that gets Media
+          Wiki's information on each fiend.
+        </li>
+      </ProjectSkillsList>
       <GitHubLink link="https://github.com/dixonw2/ShinrasBetterBestiary" />
     </Project>
   );
 };
 
-// TODO: Change list of features to more technical aspects like how it works
-const NoTorchSpam = () => {
-  return (
-    <Project
-      projectId="no-torch-spam"
-      projectName="No Torch Spam"
-      projectTechs={["Java"]}
-    >
-      <ProjectDescription>
-        A small Minecraft 1.12.2 mod that will prevent mobs from spawning at a
-        configurable light level.
-      </ProjectDescription>
-      <ProjectFeatureList>
-        <li>
-          Allows the player to choose a light level (0 - 7) for mobs to spawn
-          at.
-        </li>
-        <li>Inspiration from Minecraft's change in 1.18.</li>
-      </ProjectFeatureList>
-      <GitHubLink link="https://github.com/dixonw2/NoTorchSpam" />
-    </Project>
-  );
-};
-
-// TODO: Change list of features to more technical aspects like how it works
 const HeretechsUtil = () => {
   return (
     <Project
@@ -212,7 +180,7 @@ const HeretechsUtil = () => {
         A Minecraft plugin that adds an economy with tasks and makes the game
         more difficult.
       </ProjectDescription>
-      <ProjectFeatureList>
+      <ProjectSkillsList>
         <li>
           Has a list of tasks with a varying reward stored in a MySQL database.
         </li>
@@ -221,7 +189,7 @@ const HeretechsUtil = () => {
           After a configurable amount of time, mobs will begin to spawn with
           buffs.
         </li>
-      </ProjectFeatureList>
+      </ProjectSkillsList>
       <GitHubLink link="https://github.com/dixonw2/HeretechsUtil" />
     </Project>
   );
@@ -234,7 +202,6 @@ const Projects = () => {
       <AboutMe />
       <SecretGuests />
       <ShinrasBetterBestiary />
-      <NoTorchSpam />
       <HeretechsUtil />
     </main>
   );

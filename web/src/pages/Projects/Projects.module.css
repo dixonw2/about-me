@@ -18,8 +18,10 @@
     "content";
   border-radius: 0.75rem;
   background-color: rgba(0, 0, 0, 0.05);
-  border-left: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent);
+  border-left: 3px solid var(--accent-dark);
+  border-bottom: 2px solid var(--accent-dark);
+  border-top: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
 }
 
 .section + .section {
@@ -111,7 +113,7 @@
   font-size: 1.2rem;
 }
 
-.sectionFeaturesList {
+.sectionSkillsList {
   grid-area: features;
   padding-left: 5rem;
 }
@@ -150,4 +152,6 @@
   pointer-events: all;
   cursor: pointer;
 }
+/* #endregion */
+
 /* #endregion */
