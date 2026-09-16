@@ -62,16 +62,12 @@ const SecretGuests = () => {
             similar to React state.
           </li>
         </SkillsList>
-        <GitHubLink link="https://github.com/dixonw2/OpenRCT2-SecretGuests" />
         <Gallery>
           <Image src={sgMainMenu} alt="Main settings menu" />
           <Image src={sgCustomGuestsMenu} alt="Custom guests menu" />
         </Gallery>
+        <GitHubLink link="https://github.com/dixonw2/OpenRCT2-SecretGuests" />
       </Project>
-      {/* <div id="images">
-        <ProjectImage src={sgMainMenu} alt="Main settings menu" />
-        <ProjectImage src={sgCustomGuestsMenu} alt="Custom Guests menu" />
-      </div> */}
     </>
   );
 };
