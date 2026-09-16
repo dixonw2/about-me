@@ -4,7 +4,7 @@ import Project from "./components/Project/Project";
 import Description from "./components/Description/Description";
 import SkillsList from "./components/TechnicalSkills/TechnicalSkills";
 import GitHubLink from "./components/GitHubLink/GitHubLink";
-import Image from "./components/Image/Image";
+// import Image from "./components/Image/Image";
 
 import sgMainMenu from "@/assets/projects/secret-guests/secret_guests_main_menu.png";
 import sgCustomGuestsMenu from "@/assets/projects/secret-guests/secret_guests_custom_guests_menu.png";
@@ -44,6 +44,11 @@ const AboutMe = () => {
 };
 
 const SecretGuests = () => {
+  const images = [
+    { src: sgMainMenu, alt: "Main settings menu" },
+    { src: sgCustomGuestsMenu, alt: "Custom guests menu" },
+  ];
+
   return (
     <>
       <Project
@@ -62,10 +67,11 @@ const SecretGuests = () => {
             similar to React state.
           </li>
         </SkillsList>
-        <Gallery>
+        {/* <Gallery srcs={[sgMainMenu, sgCustomGuestsMenu]}>
           <Image src={sgMainMenu} alt="Main settings menu" />
           <Image src={sgCustomGuestsMenu} alt="Custom guests menu" />
-        </Gallery>
+        </Gallery> */}
+        <Gallery images={images} />
         <GitHubLink link="https://github.com/dixonw2/OpenRCT2-SecretGuests" />
       </Project>
     </>
@@ -94,10 +100,10 @@ const ShinrasBetterBestiary = () => {
         </li>
       </SkillsList>
       <GitHubLink link="https://github.com/dixonw2/ShinrasBetterBestiary" />
-      <Gallery>
+      {/* <Gallery>
         <p>test</p>
         <p>test 2</p>
-      </Gallery>
+      </Gallery> */}
     </Project>
   );
 };
