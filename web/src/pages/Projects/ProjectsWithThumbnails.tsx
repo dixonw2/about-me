@@ -1,6 +1,6 @@
 import styles from "./Projects.module.css";
 
-import Project from "./components/Project/Project";
+import Project from "./components/Project/ProjectWithThumbnail";
 import Description from "./components/Description/Description";
 import SkillsList from "./components/TechnicalSkills/TechnicalSkills";
 import GitHubLink from "./components/GitHubLink/GitHubLink";
@@ -148,3 +148,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

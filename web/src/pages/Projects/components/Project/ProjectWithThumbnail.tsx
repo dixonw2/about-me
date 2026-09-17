@@ -1,20 +1,20 @@
 import { useState, type ReactNode } from "react";
 
-import styles from "./Project.module.css";
+import styles from "./ProjectWithThumbnail.module.css";
 
 const Project = ({
   projectId,
   projectName,
   projectTechs,
   projectImage,
-  projectSummary,
+  projectSummary = "",
   children,
 }: {
   projectId: string;
   projectName: string;
   projectTechs: string[];
-  projectImage: { src: string; alt: string };
-  projectSummary: string;
+  projectImage?: string | { src: string; alt: string };
+  projectSummary?: string;
   children: ReactNode;
 }) => {
   const [expanded, setExpanded] = useState(false);
@@ -44,28 +44,35 @@ const Project = ({
           }
         }}
       >
-        <div className={styles.sectionHeadingTitle}>
+        <div className={styles.headingText}>
           <h2 id={projectId} className={styles.sectionTitle}>
             {projectName}
           </h2>
-          <h4 className={styles.sectionLanguages}>
+          <p className={styles.sectionLanguages}>
             {projectTechs.join(" | ")}
-          </h4>
+          </p>
         </div>
-        {!expanded && (
-          <div className={styles.sectionHeadingSubHeading}>
-            <img
-              src={projectImage.src}
-              alt={projectImage.alt}
-              className={styles.sectionHeadingSubHeadingImg}
-            />
-            <p className={styles.sectionHeadingSubHeadingSummary}>
-              {projectSummary}
-            </p>
+        {(projectImage || projectSummary) && (
+          <div className={styles.preview} inert={expanded}>
+            <div className={styles.previewInner}>
+              <div className={`${styles.previewContent} ${!projectImage ? styles.withoutThumbnail : ""}`}>
+                {projectImage && (
+                  <img
+                    className={styles.projectThumbnail}
+                    src={typeof projectImage === "string" ? projectImage : projectImage.src}
+                    alt={typeof projectImage === "string" ? "" : projectImage.alt}
+                    loading="lazy"
+                  />
+                )}
+                {projectSummary && (
+                  <p className={styles.sectionSummary}>{projectSummary}</p>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </header>
-      <div className={styles.projectPanel} inert={!expanded}>
+      <div id={`${projectId}-content`} className={styles.projectPanel} inert={!expanded}>
         <div className={styles.projectDetails}>{children}</div>
       </div>
     </section>
@@ -73,3 +80,5 @@ const Project = ({
 };
 
 export default Project;
+
+

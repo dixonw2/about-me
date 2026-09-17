@@ -26,11 +26,45 @@
 /* #region Heading */
 .sectionHeading {
   grid-area: title;
+  cursor: pointer;
+}
+
+.sectionHeadingTitle {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+}
+
+.sectionHeadingSubHeading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: auto 1fr;
+}
+
+.sectionHeadingSubHeadingImg {
+  width: 100%;
+  height: 100%;
+  max-width: 10rem;
+  margin: 0.35rem 0.65rem;
+  border-radius: 0.25rem;
+}
+
+.sectionHeadingSubHeadingSummary {
+  font-size: 1.2rem;
+}
+
+.sectionHeadingSummaryImg,
+.sectionHeadingSubHeadingSummary {
+  padding: 0.35rem 0.65rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 .sectionHeading:focus-visible {
