@@ -1,9 +1,9 @@
 import styles from "./GitHubLink.module.css";
 
-const GitHubLink = ({ src }: { src: string }) => {
+const GitHubRepo = ({ src }: { src: string }) => {
   return (
     <a
-      className={styles.sectionLink}
+      className={styles.link}
       aria-label="View project on GitHub"
       href={src}
       target="_blank"
@@ -28,4 +28,4 @@ const GitHubLink = ({ src }: { src: string }) => {
   );
 };
 
-export default GitHubLink;
+export default GitHubRepo;

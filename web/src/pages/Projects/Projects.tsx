@@ -13,18 +13,17 @@ import ProjectDescription from "./components/ProjectDescription/ProjectDescripti
 import ProjectDetailsList from "./components/ProjectDetailsList/ProjectDetailsList";
 import ProjectDetailsListItem from "./components/ProjectDetailsListItem/ProjectDetailsListItem";
 import Gallery from "./components/Gallery/Gallery";
-import GitHubLink from "./components/GitHubLink/GitHubLink";
+import GitHubRepo from "./components/GitHubLink/GitHubLink";
 
 import sgMainMenu from "@/assets/projects/secret-guests/secret_guests_main_menu.png";
 import sgCustomGuestsMenu from "@/assets/projects/secret-guests/secret_guests_custom_guests_menu.png";
 import sbbMainMenu from "@/assets/projects/shinras-better-bestiary/sbbMainMenu.png";
-// import sbbClearOversouled from "@/assets/projects/shinras-better-bestiary/sbbClearOversouled.png";
-// import sbbFiendStats from "@/assets/projects/shinras-better-bestiary/sbbFiendStats.png";
-// import sbbViaInfinitoFloors from "@/assets/projects/shinras-better-bestiary/sbbViaInfinitoFloors.png";
+import sbbClearOversouled from "@/assets/projects/shinras-better-bestiary/sbbClearOversouled.png";
+import sbbFiendStats from "@/assets/projects/shinras-better-bestiary/sbbFiendStats.png";
+import sbbViaInfinitoFloors from "@/assets/projects/shinras-better-bestiary/sbbViaInfinitoFloors.png";
+import { useEffect, useState } from "react";
 
 const AboutMe = () => {
-  const thumbnail = { src: "", alt: "" };
-  const images = [thumbnail];
   return (
     <ProjectCard>
       <ProjectPreviewContainer>
@@ -43,8 +42,8 @@ const AboutMe = () => {
           />
         </ProjectHeading>
         <ProjectInfo>
-          <ProjectThumbnail image={thumbnail} />
-          <ProjectSummary>
+          <ProjectThumbnail />
+          <ProjectSummary features={["Résumé", "Projects", "Hobbies", "Games"]}>
             This website! A website about me, whether it's professional
             information or general hobbies and interests!
           </ProjectSummary>
@@ -66,19 +65,44 @@ const AboutMe = () => {
             Utilizes GitHub Projects as a project management tool.
           </ProjectDetailsListItem>
         </ProjectDetailsList>
-        <Gallery images={images} />
-        <GitHubLink src="https://github.com/dixonw2/about-me" />
+        <GitHubRepo src="https://github.com/dixonw2/about-me" />
       </ProjectBody>
     </ProjectCard>
   );
 };
 
 const SecretGuests = () => {
+  const [downloads, setDownloads] = useState(0);
+
   const thumbnail = { src: sgMainMenu, alt: "Main settings menu" };
   const images = [
     thumbnail,
     { src: sgCustomGuestsMenu, alt: "Custom guests menu" },
   ];
+
+  useEffect(() => {
+    const getDownloads = async () => {
+      const response = await fetch(
+        "https://api.github.com/repos/dixonw2/OpenRCT2-SecretGuests/releases",
+      );
+
+      if (!response.ok) {
+        throw new Error(`GitHub download count failed: ${response.status}`);
+      }
+      const data: { assets: { name: string; download_count: number }[] }[] =
+        await response.json();
+      let count = 0;
+      for (const release of data) {
+        const plugin = release.assets.find((x) => x.name === "SecretGuests.js");
+        if (plugin) {
+          count += plugin.download_count;
+        }
+      }
+
+      setDownloads(count);
+    };
+    getDownloads();
+  }, []);
 
   return (
     <ProjectCard>
@@ -89,7 +113,13 @@ const SecretGuests = () => {
         </ProjectHeading>
         <ProjectInfo>
           <ProjectThumbnail image={thumbnail} />
-          <ProjectSummary>
+          <ProjectSummary
+            features={[
+              "OpenRCT2",
+              "Custom guest names",
+              "Configurable spawn settings",
+            ]}
+          >
             A configurable OpenRCT2 plugin that spawns guests with hidden Easter
             Egg names.
           </ProjectSummary>
@@ -97,19 +127,39 @@ const SecretGuests = () => {
       </ProjectPreviewContainer>
       <ProjectBody>
         <ProjectDescription>
-          Secret Guests is a plugin for the game Open Rollercoaster Tycoon 2.
+          The Easter Eggs in Rollercoaster Tycoon are pretty simple: there are a
+          few names you can name guests that will make the guest behave in a
+          certain way. For example, if you rename a guest Emma Garrell, every
+          other guest that shares a path tile with Emma Garrell will be given a
+          purple shirt. Eilidh Bell, on the other hand, will vandalize anything
+          they can on their current path tile. However, the player had to
+          manually rename them.
+          <br /> <br />
+          Alongside the open source continuation of Rollercoaster Tycoon 2,
+          called OpenRCT2, this plugin will automatically spawn guests with
+          those names. It's highly configurable, allowing the player to change
+          just about everything, such as which guests may spawn, the overall
+          spawn chance, how many guests can share that name, how many can be in
+          the park at once, and even individual spawn weights per guest.
+          <br /> <br />
+          The player can also add their own Easter Egg names with their own
+          individual actions.
         </ProjectDescription>
         <ProjectDetailsList>
           <ProjectDetailsListItem>
             Built using TypeScript and the OpenRCT2 plugin API.
           </ProjectDetailsListItem>
           <ProjectDetailsListItem>
-            Uses a React-like state design, where setting a value updates the
-            relevant UI elements as well using wrapper methods.
+            Uses a self-implemented React-like state design, where setting a
+            value updates the relevant UI elements as well using wrapper
+            methods.
+          </ProjectDetailsListItem>
+          <ProjectDetailsListItem>
+            Currently has {downloads} downloads!
           </ProjectDetailsListItem>
         </ProjectDetailsList>
         <Gallery images={images} />
-        <GitHubLink src="https://github.com/dixonw2/OpenRCT2-SecretGuests" />
+        <GitHubRepo src="https://github.com/dixonw2/OpenRCT2-SecretGuests" />
       </ProjectBody>
     </ProjectCard>
   );
@@ -117,16 +167,15 @@ const SecretGuests = () => {
 
 const ShinrasBetterBestiary = () => {
   const thumbnail = { src: sbbMainMenu, alt: "Main screen" };
-  const images = [thumbnail];
-  // const images = [
-  //   thumbnail,
-  //   { src: sbbClearOversouled, alt: "Clear oversoul prompt" },
-  //   { src: sbbFiendStats, alt: "Stats screen for a fiend" },
-  //   {
-  //     src: sbbViaInfinitoFloors,
-  //     alt: "Via Infinito Floors for remaining fiends",
-  //   },
-  // ];
+  const images = [
+    thumbnail,
+    { src: sbbFiendStats, alt: "Stats screen for a fiend" },
+    {
+      src: sbbViaInfinitoFloors,
+      alt: "Via Infinito Floors for remaining fiends",
+    },
+    { src: sbbClearOversouled, alt: "Clear oversoul prompt" },
+  ];
   return (
     <ProjectCard>
       <ProjectPreviewContainer>
@@ -136,7 +185,13 @@ const ShinrasBetterBestiary = () => {
         </ProjectHeading>
         <ProjectInfo>
           <ProjectThumbnail image={thumbnail} />
-          <ProjectSummary>
+          <ProjectSummary
+            features={[
+              "Final Fantasy X-2",
+              "Fiend tracking",
+              "Fiend information",
+            ]}
+          >
             An application to track the progress of oversouling Shinra's
             Bestiary in Final Fantasy X-2.
           </ProjectSummary>
@@ -148,7 +203,7 @@ const ShinrasBetterBestiary = () => {
           the game called Shinra's Bestiary. If you "oversoul" every fiend that
           can be oversouled in the game, you get the Achievement/Trophy{" "}
           <em>Monster Master</em>, as well as the Garment Grid <em>The End</em>.
-          To oversoul a fiend, you have to kill a certain amount of fiends of
+          To oversoul a fiend, you have to kill a certain number of fiends of
           the same type/species.
           <br /> <br />
           This application helps keep track of those fiends. It allows the user
@@ -166,15 +221,13 @@ const ShinrasBetterBestiary = () => {
           </ProjectDetailsListItem>
         </ProjectDetailsList>
         <Gallery images={images} />
-        <GitHubLink src="https://github.com/dixonw2/ShinrasBetterBestiary" />
+        <GitHubRepo src="https://github.com/dixonw2/ShinrasBetterBestiary" />
       </ProjectBody>
     </ProjectCard>
   );
 };
 
 const HeretechsUtil = () => {
-  const thumbnail = { src: "", alt: "" };
-  const images = [thumbnail];
   return (
     <ProjectCard>
       <ProjectPreviewContainer>
@@ -183,8 +236,16 @@ const HeretechsUtil = () => {
           <ProjectTechs techs={["Java", "MySQL"]} />
         </ProjectHeading>
         <ProjectInfo>
-          <ProjectThumbnail image={thumbnail} />
-          <ProjectSummary>
+          <ProjectThumbnail />
+          <ProjectSummary
+            features={[
+              "Minecraft 1.17",
+              "PaperMC",
+              "Tasks",
+              "Economy",
+              "Difficulty",
+            ]}
+          >
             A Minecraft plugin that adds an economy with tasks and makes the
             game more difficult.
           </ProjectSummary>
@@ -219,8 +280,7 @@ const HeretechsUtil = () => {
             their points persist between worlds.
           </ProjectDetailsListItem>
         </ProjectDetailsList>
-        <Gallery images={images} />
-        <GitHubLink src="https://github.com/dixonw2/HeretechsUtil" />
+        <GitHubRepo src="https://github.com/dixonw2/HeretechsUtil" />
       </ProjectBody>
     </ProjectCard>
   );

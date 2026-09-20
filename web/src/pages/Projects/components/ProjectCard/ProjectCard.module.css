@@ -14,6 +14,10 @@
   --duration: 300ms;
   interpolate-size: allow-keywords;
   transition: background-color var(--duration) ease;
+
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .card + .card {

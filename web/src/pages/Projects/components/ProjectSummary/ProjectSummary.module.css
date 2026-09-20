@@ -1,6 +1,14 @@
-.projectSummary {
-  font-size: 1.2rem;
+.projectSummaryContainer {
   padding: 0.35rem 0.65rem;
   margin-top: 0.6rem;
   margin-bottom: 0.6rem;
+}
+
+.summary {
+  font-size: 1.1rem;
+}
+
+.features {
+  margin: 0;
+  justify-self: right;
 }

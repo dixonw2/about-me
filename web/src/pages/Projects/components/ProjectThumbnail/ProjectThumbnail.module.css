@@ -3,9 +3,5 @@
   height: 100%;
   max-width: 12rem;
   margin: 0.35rem 0.65rem;
-  border-radius: 1rem;
-
-  padding: 0.35rem 0.65rem;
-  margin-top: 0.6rem;
-  margin-bottom: 0.6rem;
+  border-radius: 0.5rem;
 }

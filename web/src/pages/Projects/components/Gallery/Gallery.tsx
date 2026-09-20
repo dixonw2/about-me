@@ -1,18 +1,8 @@
-// import type { ReactNode } from "react";
-// import styles from "./Gallery.module.css";
-
-// const Gallery = ({ children }: { children: ReactNode }) => {
-//   return <div className={styles.gallery}>{children}</div>;
-// };
-
-// export default Gallery;
-
-// const Image = () => {
-
-// }
-
 import styles from "./Gallery.module.css";
-import Image from "../Image/Image";
+
+const Image = ({ src, alt }: { src: string; alt: string }) => {
+  return <img src={src} alt={alt} className={styles.image} />;
+};
 
 const Gallery = ({ images }: { images: { src: string; alt: string }[] }) => {
   return (
