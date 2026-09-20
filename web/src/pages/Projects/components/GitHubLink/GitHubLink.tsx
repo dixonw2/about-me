@@ -1,11 +1,11 @@
 import styles from "./GitHubLink.module.css";
 
-const GitHubLink = ({ link }: { link: string }) => {
+const GitHubLink = ({ src }: { src: string }) => {
   return (
     <a
       className={styles.sectionLink}
       aria-label="View project on GitHub"
-      href={link}
+      href={src}
       target="_blank"
     >
       <svg
