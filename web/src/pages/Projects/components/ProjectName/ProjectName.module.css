@@ -1,0 +1,9 @@
+.projectName {
+  font-size: 2rem;
+  color: var(--alt-accent);
+  border-radius: 0.25rem;
+  padding: 0.35rem 0.65rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+  line-height: 2rem;
+}

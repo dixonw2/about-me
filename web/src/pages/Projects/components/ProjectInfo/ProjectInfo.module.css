@@ -1,0 +1,19 @@
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: auto;
+  overflow: clip;
+  visibility: visible;
+  transition:
+    height var(--duration) ease,
+    opacity var(--duration) ease,
+    visibility var(--duration);
+}
+
+details[open] .info {
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+}
