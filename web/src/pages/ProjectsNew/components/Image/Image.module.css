@@ -1,0 +1,64 @@
+.image {
+  width: 30rem;
+  height: 20rem;
+  border-radius: 12px;
+  cursor: zoom-in;
+}
+
+/* .thumbnail { <-- newer than down there vvv
+  width: 16rem;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+} */
+
+/* .thumbnail {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.thumbnail img {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
+  height: auto;
+  border-radius: 0.5rem;
+} */
+
+/* .dialog {
+  max-width: 95vw;
+  max-height: 95vh;
+  padding: 1rem;
+  border: 0;
+  border-radius: 0.75rem;
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 75%);
+}
+
+.dialog img {
+  display: block;
+  max-width: 85vw;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
+}
+
+.close {
+  display: block;
+  margin: 0 0 0.75rem auto;
+} */

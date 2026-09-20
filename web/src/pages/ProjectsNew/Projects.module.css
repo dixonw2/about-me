@@ -1,0 +1,11 @@
+.container {
+  composes: container from global;
+}
+
+.pageHeader {
+  font-size: 4rem;
+  color: var(--accent);
+  text-align: left;
+  border-bottom: 2px solid var(--alt-accent);
+  margin-bottom: 0.75rem;
+}

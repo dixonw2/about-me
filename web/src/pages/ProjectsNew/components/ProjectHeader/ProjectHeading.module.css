@@ -1,0 +1,6 @@
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: 1fr auto;
+}

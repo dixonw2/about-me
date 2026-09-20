@@ -1,6 +1,6 @@
 import styles from "./Projects.module.css";
 
-import Project from "./components/Project/Project";
+import ProjectCard from "./components/ProjectCard/ProjectCard";
 import Description from "./components/Description/Description";
 import SkillsList from "./components/TechnicalSkills/TechnicalSkills";
 import GitHubLink from "./components/GitHubLink/GitHubLink";
@@ -9,6 +9,8 @@ import GitHubLink from "./components/GitHubLink/GitHubLink";
 import sgMainMenu from "@/assets/projects/secret-guests/secret_guests_main_menu.png";
 import sgCustomGuestsMenu from "@/assets/projects/secret-guests/secret_guests_custom_guests_menu.png";
 import Gallery from "./components/Gallery/Gallery";
+import Heading from "./components/Heading/Heading";
+import ProjectTitle from "./components/ProjectTitle/ProjectTitle";
 
 // const AboutMe = () => {
 //   return (
@@ -51,15 +53,25 @@ const SecretGuests = () => {
   ];
 
   return (
-    <>
-      <Project
-        projectId="secret-guests"
-        projectName="Secret Guests"
-        projectTechs={["TypeScript"]}
-        projectImage={thumbnail}
-        projectSummary="A configurable plugin for the game Open Rollercoaster Tycoon 2 that
-          allows the game to spawn guests with hidden Easter Egg names."
-      >
+    <ProjectCard
+    // projectId="secret-guests"
+    // projectName="Secret Guests"
+    // projectTechs={["TypeScript"]}
+    // projectImage={thumbnail}
+    // projectSummary="A configurable plugin for the game Open Rollercoaster Tycoon 2 that
+    //     allows the game to spawn guests with hidden Easter Egg names."
+    >
+      <ProjectTitle>
+        <p>Hello</p>
+        {/* <ProjectName></ProjectName>
+        <ProjectTechs></ProjectTechs> */}
+      </ProjectTitle>
+      <p>Extended</p>
+      {/* <Preview>
+        <ProjectImage></ProjectImage>
+        <ProjectSummary></ProjectSummary>
+      </Preview> */}
+      {/* <Body>
         <Description>MAKE DIS MORE DESCRIPTIVE</Description>
         <SkillsList>
           <li>Uses the OpenRCT2 plugin API and TypeScript.</li>
@@ -68,14 +80,10 @@ const SecretGuests = () => {
             similar to React state.
           </li>
         </SkillsList>
-        {/* <Gallery srcs={[sgMainMenu, sgCustomGuestsMenu]}>
-          <Image src={sgMainMenu} alt="Main settings menu" />
-          <Image src={sgCustomGuestsMenu} alt="Custom guests menu" />
-        </Gallery> */}
         <Gallery images={images} />
         <GitHubLink link="https://github.com/dixonw2/OpenRCT2-SecretGuests" />
-      </Project>
-    </>
+      </Body> */}
+    </ProjectCard>
   );
 };
 
