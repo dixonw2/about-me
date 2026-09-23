@@ -1,0 +1,92 @@
+import { useEffect, useState } from "react";
+import styles from "./FavoriteSongs.module.css";
+import type { FavoriteSongsList } from "@/types/FavoriteSongsList";
+import ListEntry from "./components/ListEntry/ListEntry";
+
+const FavoriteSongs = () => {
+  const [favoritesList, setFavoritesList] = useState<FavoriteSongsList[]>([]);
+  const [selectedYear, setSelectedYear] = useState<number>(0);
+
+  useEffect(() => {
+    const getLists = async () => {
+      const response = await fetch("/api/music/favorite-songs");
+      const data = await response.json();
+      setFavoritesList(data);
+    };
+
+    getLists();
+  }, []);
+
+  const getYears = (): number[] => {
+    return favoritesList.map((list) => list.year);
+  };
+
+  return (
+    <main className={styles.container}>
+      <h1 className={styles.pageTitle}>Favorite Songs of the Year</h1>
+      {/* <div className={styles.info}> */}
+      <h2 className={styles.info}>
+        Thirteen favorite songs from each year, one song per band/artist.
+      </h2>
+      {/* <p>
+          One of my best friends has been creating a list of his top thirteen
+          songs every year for over a decade, so I decided to do it too! Every
+          year since 2017, I've compiled a list of thirteen songs released that
+          year that I found myself listening to the most often. The rules are:
+        </p>
+        <ul>
+          <li>Exactly 13 songs are allowed.</li>
+          <li>
+            Every song must be released that year.
+            <ul>
+              <li>
+                If a song was released as a single prior to that year BUT it was
+                on an album released that year, AND I've never heard it before
+                that year, then it is allowed. Otherwise, it can't be added.
+              </li>
+            </ul>
+          </li>
+          <li>
+            No more than one song per band/artist for each year. In 2017 I added
+            two songs by The Maine to the list, and since then I've decided that
+            it makes the list unbalanced, because if a band/artist releases an
+            album I really enjoy, then it can be tempting to add half of the
+            album to the list.
+          </li>
+        </ul>
+        <p>
+          This is something I've really enjoyed doing every year! In January
+          I'll create a new playlist, and throughout the year I'll periodically
+          add new songs I discover until about mid-December when I wittle the
+          playlist down to 13 songs. Sometimes I find myself listening to the
+          same few bands or genres for a while, so this list helps keep me
+          motivated to find new music throughout the year.
+        </p> */}
+      {/* </div> */}
+      <div>
+        <ul>
+          {getYears().map((year) => (
+            <button
+              key={`button-${year}`}
+              onClick={() => setSelectedYear(year)}
+            >
+              {year}
+            </button>
+          ))}
+        </ul>
+        {favoritesList.map(
+          (list) => (
+            <ListEntry
+              entry={list}
+              key={`entry-${list.year}`}
+              selected={list.year === selectedYear}
+            />
+          ),
+          // return <ListEntry year={list.year} />;
+        )}
+      </div>
+    </main>
+  );
+};
+
+export default FavoriteSongs;

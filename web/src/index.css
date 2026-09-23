@@ -33,4 +33,5 @@ body {
   width: calc(100% - 2rem);
   max-width: 70rem;
   margin: 3rem auto;
+  white-space: pre-wrap;
 }
