@@ -34,6 +34,24 @@ const ListSong = ({
   );
 };
 
+const getAlbumArtPath = (song: Song) => {
+  const exceptions = ["÷"];
+  const sanitizeString = (value: string) =>
+    exceptions.filter((x) => x === value).length
+      ? value.trim()
+      : value
+          .replace(/[^\p{L}\p{N}\s-]/gu, "")
+          .trim()
+          .replace(/\s+/g, "-")
+          .replace(/-+/g, "-")
+          .toLocaleLowerCase();
+
+  const artist = sanitizeString(song.artist);
+  const album = sanitizeString(song.album);
+
+  return `/images/albums/${artist}/${album}.jpg`;
+};
+
 const ListEntry = ({
   entry,
   selected: selected = false,
@@ -60,7 +78,7 @@ const ListEntry = ({
           ))}
         <div className={styles.entryCommentContainer}>
           {currentSongArt ? (
-            <img src={currentSongArt} />
+            <img className={styles.albumCover} src={currentSongArt} />
           ) : (
             <div className={styles.albumCover}>{entry.year}</div>
           )}
@@ -71,8 +89,8 @@ const ListEntry = ({
             <ListSong
               song={song}
               key={`${song.artist}-${song.songName}`}
-              onMouseEnter={() => setCurrentSongArt(song.albumArtPath)}
-              onMouseLeave={() => setCurrentSongArt(song.albumArtPath)}
+              onMouseEnter={() => setCurrentSongArt(getAlbumArtPath(song))}
+              onMouseLeave={() => setCurrentSongArt("")}
             />
           ))}
         </ul>
