@@ -1,0 +1,30 @@
+.entryTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.albumCover {
+  width: 192px;
+  height: 192px;
+  background: linear-gradient(135deg, #7828c8, #ff6b6b, #ffd166);
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  grid-column: 1;
+}
+
+.entryComment {
+  grid-column: 2;
+  margin-top: 0;
+}
+
+.entryCommentContainer {
+  display: grid;
+  align-items: center;
+  /* justify-content: center; */
+  grid-template-columns: 1fr 2.5fr;
+}
+
+.entryUpdated {
+    justify-self: right;
+}

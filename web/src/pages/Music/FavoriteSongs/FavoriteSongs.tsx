@@ -2,16 +2,21 @@ import { useEffect, useState } from "react";
 import styles from "./FavoriteSongs.module.css";
 import type { FavoriteSongsList } from "@/types/FavoriteSongsList";
 import ListEntry from "./components/ListEntry/ListEntry";
+import YearsButtonsContainer from "./YearsButtonContainer/YearsButtonsContainer";
+import Button from "./components/Button/Button";
 
 const FavoriteSongs = () => {
   const [favoritesList, setFavoritesList] = useState<FavoriteSongsList[]>([]);
   const [selectedYear, setSelectedYear] = useState<number>(0);
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getLists = async () => {
       const response = await fetch("/api/music/favorite-songs");
       const data = await response.json();
       setFavoritesList(data);
+      setLoading(false);
     };
 
     getLists();
@@ -24,11 +29,11 @@ const FavoriteSongs = () => {
   return (
     <main className={styles.container}>
       <h1 className={styles.pageTitle}>Favorite Songs of the Year</h1>
-      {/* <div className={styles.info}> */}
       <h2 className={styles.info}>
         Thirteen favorite songs from each year, one song per band/artist.
       </h2>
-      {/* <p>
+      <div style={{ visibility: "hidden", height: "0" }}>
+        <p>
           One of my best friends has been creating a list of his top thirteen
           songs every year for over a decade, so I decided to do it too! Every
           year since 2017, I've compiled a list of thirteen songs released that
@@ -61,29 +66,30 @@ const FavoriteSongs = () => {
           playlist down to 13 songs. Sometimes I find myself listening to the
           same few bands or genres for a while, so this list helps keep me
           motivated to find new music throughout the year.
-        </p> */}
-      {/* </div> */}
+        </p>
+      </div>
       <div>
-        <ul>
-          {getYears().map((year) => (
-            <button
-              key={`button-${year}`}
-              onClick={() => setSelectedYear(year)}
-            >
-              {year}
-            </button>
-          ))}
-        </ul>
-        {favoritesList.map(
-          (list) => (
-            <ListEntry
-              entry={list}
-              key={`entry-${list.year}`}
-              selected={list.year === selectedYear}
-            />
-          ),
-          // return <ListEntry year={list.year} />;
-        )}
+        <YearsButtonsContainer>
+          {loading ? (
+            <em>Loading...</em>
+          ) : (
+            getYears().map((year) => (
+              <Button
+                key={`button-${year}`}
+                onClick={() => setSelectedYear(year)}
+              >
+                {year}
+              </Button>
+            ))
+          )}
+        </YearsButtonsContainer>
+        {favoritesList.map((list) => (
+          <ListEntry
+            entry={list}
+            key={`entry-${list.year}`}
+            selected={list.year === selectedYear}
+          />
+        ))}
       </div>
     </main>
   );

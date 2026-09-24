@@ -14,7 +14,7 @@
 .info {
   margin: auto;
   font-size: 1.5rem;
-  line-height: 0.1rem;
+  /* line-height: 0.1rem; */
   text-align: center;
   margin-top: 0;
 }
