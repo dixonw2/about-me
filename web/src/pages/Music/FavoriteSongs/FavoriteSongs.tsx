@@ -28,10 +28,14 @@ const FavoriteSongs = () => {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.pageTitle}>Favorite Songs of the Year</h1>
-      <h2 className={styles.info}>
-        Thirteen favorite songs from each year, one song per band/artist.
-      </h2>
+      {!selectedYear && (
+        <>
+          <h1 className={styles.pageTitle}>Favorite Songs of the Year</h1>
+          <h2 className={styles.info}>
+            Thirteen favorite songs from each year, one song per band/artist.
+          </h2>
+        </>
+      )}
       <div style={{ visibility: "hidden", height: "0" }}>
         <p>
           One of my best friends has been creating a list of his top thirteen
@@ -76,7 +80,11 @@ const FavoriteSongs = () => {
             getYears().map((year) => (
               <Button
                 key={`button-${year}`}
-                onClick={() => setSelectedYear(year)}
+                onClick={() =>
+                  selectedYear === year
+                    ? setSelectedYear(0)
+                    : setSelectedYear(year)
+                }
               >
                 {year}
               </Button>

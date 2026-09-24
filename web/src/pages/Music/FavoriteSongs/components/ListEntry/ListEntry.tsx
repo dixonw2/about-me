@@ -1,14 +1,25 @@
 import type { Song, FavoriteSongsList } from "@/types/FavoriteSongsList";
 
 import styles from "./ListEntry.module.css";
+import { useState } from "react";
 
-const ListSong = ({ song }: { song: Song }) => {
+const ListSong = ({
+  song,
+  onMouseEnter,
+  onMouseLeave,
+}: {
+  song: Song;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+}) => {
   return (
     <li
       style={{
         display: "flex",
         justifyContent: "space-evenly",
       }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <span style={{ flex: 1, textAlign: "center" }}>{song.songName}</span>
       <span
@@ -30,6 +41,8 @@ const ListEntry = ({
   entry: FavoriteSongsList;
   selected?: boolean;
 }) => {
+  const [currentSongArt, setCurrentSongArt] = useState("");
+
   return (
     selected && (
       <section>
@@ -46,12 +59,21 @@ const ListEntry = ({
             </h3>
           ))}
         <div className={styles.entryCommentContainer}>
-          <div className={styles.albumCover}>{entry.year}</div>
+          {currentSongArt ? (
+            <img src={currentSongArt} />
+          ) : (
+            <div className={styles.albumCover}>{entry.year}</div>
+          )}
           <p className={styles.entryComment}>{entry.comment}</p>
         </div>
         <ul>
           {entry.songs.map((song) => (
-            <ListSong song={song} key={`${song.artist}-${song.songName}`} />
+            <ListSong
+              song={song}
+              key={`${song.artist}-${song.songName}`}
+              onMouseEnter={() => setCurrentSongArt(song.albumArtPath)}
+              onMouseLeave={() => setCurrentSongArt(song.albumArtPath)}
+            />
           ))}
         </ul>
       </section>

@@ -3,6 +3,7 @@ export interface Song {
   songName: string;
   artist: string;
   album: string;
+  albumArtPath: string;
   genre: string;
   songLength: string;
   appleMusicLink: string;
