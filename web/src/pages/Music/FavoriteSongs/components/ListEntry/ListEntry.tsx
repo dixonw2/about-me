@@ -77,11 +77,23 @@ const ListEntry = ({
             </h3>
           ))}
         <div className={styles.entryCommentContainer}>
-          {currentSongArt ? (
-            <img className={styles.albumCover} src={currentSongArt} />
-          ) : (
-            <div className={styles.albumCover}>{entry.year}</div>
-          )}
+          <div className={styles.albumArtWrapper}>
+            {currentSongArt ? (
+              <div key={currentSongArt} className={styles.artworkLayer}>
+                <img
+                  className={styles.albumCover}
+                  src={currentSongArt}
+                  alt="Album cover"
+                />
+                <span className={styles.ribbon}>{entry.year}</span>
+              </div>
+            ) : (
+              <div key={currentSongArt} className={styles.blank}>
+                <span className={styles.year}>{entry.year}</span>
+              </div>
+            )}
+          </div>
+
           <p className={styles.entryComment}>{entry.comment}</p>
         </div>
         <ul>
