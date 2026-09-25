@@ -78,7 +78,7 @@
   height: 30px;
   padding: 0;
   transform: rotate(-45deg);
-  background: rgb(0 0 0 / 75%);
+  background: rgb(0 0 0 / 0.75);
   color: white;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -96,6 +96,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .blank,
   .artworkLayer {
     animation: none;
   }

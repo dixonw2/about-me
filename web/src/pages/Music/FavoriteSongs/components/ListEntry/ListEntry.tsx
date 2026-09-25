@@ -7,19 +7,23 @@ const ListSong = ({
   song,
   onMouseEnter,
   onMouseLeave,
+  onClick,
 }: {
   song: Song;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onClick?: () => void;
 }) => {
   return (
     <li
       style={{
         display: "flex",
         justifyContent: "space-evenly",
+        cursor: "pointer",
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
     >
       <span style={{ flex: 1, textAlign: "center" }}>{song.songName}</span>
       <span
@@ -59,6 +63,7 @@ const ListEntry = ({
   entry: FavoriteSongsList;
   selected?: boolean;
 }) => {
+  const [tempSongArt, setTempSongArt] = useState("");
   const [currentSongArt, setCurrentSongArt] = useState("");
 
   return (
@@ -78,17 +83,17 @@ const ListEntry = ({
           ))}
         <div className={styles.entryCommentContainer}>
           <div className={styles.albumArtWrapper}>
-            {currentSongArt ? (
-              <div key={currentSongArt} className={styles.artworkLayer}>
+            {tempSongArt || currentSongArt ? (
+              <div key={tempSongArt} className={styles.artworkLayer}>
                 <img
                   className={styles.albumCover}
-                  src={currentSongArt}
+                  src={tempSongArt ? tempSongArt : currentSongArt}
                   alt="Album cover"
                 />
                 <span className={styles.ribbon}>{entry.year}</span>
               </div>
             ) : (
-              <div key={currentSongArt} className={styles.blank}>
+              <div key={tempSongArt} className={styles.blank}>
                 <span className={styles.year}>{entry.year}</span>
               </div>
             )}
@@ -101,8 +106,9 @@ const ListEntry = ({
             <ListSong
               song={song}
               key={`${song.artist}-${song.songName}`}
-              onMouseEnter={() => setCurrentSongArt(getAlbumArtPath(song))}
-              onMouseLeave={() => setCurrentSongArt("")}
+              onMouseEnter={() => setTempSongArt(getAlbumArtPath(song))}
+              onMouseLeave={() => setTempSongArt("")}
+              onClick={() => setCurrentSongArt(getAlbumArtPath(song))}
             />
           ))}
         </ul>
