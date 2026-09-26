@@ -94,7 +94,7 @@ const ListEntry = ({ entry }: { entry: FavoriteSongsList }) => {
 
         <p className={styles.entryComment}>{entry.comment}</p>
       </div>
-      <ul>
+      <ul className={styles.songList}>
         {entry.songs.map((song) => (
           <ListSong
             song={song}
