@@ -1,8 +1,8 @@
 import { type ReactNode } from "react";
 
-import styles from "./Button.module.css";
+import styles from "./YearButton.module.css";
 
-const Button = ({
+const YearButton = ({
   children,
   onClick,
 }: {
@@ -16,4 +16,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default YearButton;
