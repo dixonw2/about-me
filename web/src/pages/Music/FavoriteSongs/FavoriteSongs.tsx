@@ -4,12 +4,17 @@ import type { FavoriteSongsList } from "@/types/FavoriteSongsList";
 import ListEntry from "./components/ListEntry/ListEntry";
 import YearsButtonsContainer from "./YearsButtonContainer/YearsButtonsContainer";
 import Button from "./components/Button/Button";
+import FavoritesTitleContainer from "./components/FavoritesTitle/FavoritesTitleContainer";
 
 const FavoriteSongs = () => {
   const [favoritesList, setFavoritesList] = useState<FavoriteSongsList[]>([]);
   const [selectedYear, setSelectedYear] = useState<number>(0);
 
   const [loading, setLoading] = useState(true);
+
+  const selectedEntry: FavoriteSongsList | undefined = favoritesList.find(
+    (list) => list.year === selectedYear,
+  );
 
   useEffect(() => {
     const getLists = async () => {
@@ -28,13 +33,13 @@ const FavoriteSongs = () => {
 
   return (
     <main className={styles.container}>
-      {!selectedYear && (
-        <>
+      {selectedYear === 0 && (
+        <FavoritesTitleContainer>
           <h1 className={styles.pageTitle}>Favorite Songs of the Year</h1>
           <h2 className={styles.info}>
             Thirteen favorite songs from each year, one song per band/artist.
           </h2>
-        </>
+        </FavoritesTitleContainer>
       )}
       <div style={{ visibility: "hidden", height: "0" }}>
         <p>
@@ -91,13 +96,9 @@ const FavoriteSongs = () => {
             ))
           )}
         </YearsButtonsContainer>
-        {favoritesList.map((list) => (
-          <ListEntry
-            entry={list}
-            key={`entry-${list.year}`}
-            selected={list.year === selectedYear}
-          />
-        ))}
+        {selectedEntry && (
+          <ListEntry key={selectedYear} entry={selectedEntry} />
+        )}
       </div>
     </main>
   );

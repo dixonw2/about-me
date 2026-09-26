@@ -56,64 +56,56 @@ const getAlbumArtPath = (song: Song) => {
   return `/images/albums/${artist}/${album}.jpg`;
 };
 
-const ListEntry = ({
-  entry,
-  selected: selected = false,
-}: {
-  entry: FavoriteSongsList;
-  selected?: boolean;
-}) => {
+const ListEntry = ({ entry }: { entry: FavoriteSongsList }) => {
   const [tempSongArt, setTempSongArt] = useState("");
   const [currentSongArt, setCurrentSongArt] = useState("");
 
   return (
-    selected && (
-      <section>
-        <div className={styles.entryTitleContainer}>
-          <h1>{entry.year}</h1>
-          <h2>{new Date(entry.dateCreated).toLocaleDateString()}</h2>
+    <section>
+      <div className={styles.entryTitleContainer}>
+        <h1>{entry.year}</h1>
+        <h2>{new Date(entry.dateCreated).toLocaleDateString()}</h2>
+      </div>
+      {entry.dateUpdated ||
+        (entry.year > 0 && (
+          <h3 className={styles.entryUpdated}>
+            {new Date(
+              entry.dateUpdated ? entry.dateUpdated : "2020-03-06",
+            ).toLocaleDateString()}
+          </h3>
+        ))}
+      <div className={styles.entryCommentContainer}>
+        <div className={styles.albumArtWrapper}>
+          {tempSongArt || currentSongArt ? (
+            <div key={tempSongArt} className={styles.artworkLayer}>
+              <img
+                className={styles.albumCover}
+                src={tempSongArt ? tempSongArt : currentSongArt}
+                alt="Album cover"
+              />
+              <span className={styles.ribbon}>{entry.year}</span>
+            </div>
+          ) : (
+            <div key={tempSongArt} className={styles.blank}>
+              <span className={styles.year}>{entry.year}</span>
+            </div>
+          )}
         </div>
-        {entry.dateUpdated ||
-          (entry.year > 0 && (
-            <h3 className={styles.entryUpdated}>
-              {new Date(
-                entry.dateUpdated ? entry.dateUpdated : "2020-03-06",
-              ).toLocaleDateString()}
-            </h3>
-          ))}
-        <div className={styles.entryCommentContainer}>
-          <div className={styles.albumArtWrapper}>
-            {tempSongArt || currentSongArt ? (
-              <div key={tempSongArt} className={styles.artworkLayer}>
-                <img
-                  className={styles.albumCover}
-                  src={tempSongArt ? tempSongArt : currentSongArt}
-                  alt="Album cover"
-                />
-                <span className={styles.ribbon}>{entry.year}</span>
-              </div>
-            ) : (
-              <div key={tempSongArt} className={styles.blank}>
-                <span className={styles.year}>{entry.year}</span>
-              </div>
-            )}
-          </div>
 
-          <p className={styles.entryComment}>{entry.comment}</p>
-        </div>
-        <ul>
-          {entry.songs.map((song) => (
-            <ListSong
-              song={song}
-              key={`${song.artist}-${song.songName}`}
-              onMouseEnter={() => setTempSongArt(getAlbumArtPath(song))}
-              onMouseLeave={() => setTempSongArt("")}
-              onClick={() => setCurrentSongArt(getAlbumArtPath(song))}
-            />
-          ))}
-        </ul>
-      </section>
-    )
+        <p className={styles.entryComment}>{entry.comment}</p>
+      </div>
+      <ul>
+        {entry.songs.map((song) => (
+          <ListSong
+            song={song}
+            key={`${song.artist}-${song.songName}`}
+            onMouseEnter={() => setTempSongArt(getAlbumArtPath(song))}
+            onMouseLeave={() => setTempSongArt("")}
+            onClick={() => setCurrentSongArt(getAlbumArtPath(song))}
+          />
+        ))}
+      </ul>
+    </section>
   );
 };
 
