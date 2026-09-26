@@ -2,7 +2,7 @@ import styles from "./Projects.module.css";
 
 import ProjectCard from "./components/ProjectCard/ProjectCard";
 import ProjectPreviewContainer from "./components/ProjectPreviewContainer/ProjectPreviewContainer";
-import ProjectHeading from "./components/ProjectHeader/ProjectHeading";
+import ProjectHeading from "./components/ProjectHeading/ProjectHeading";
 import ProjectName from "./components/ProjectName/ProjectName";
 import ProjectTechs from "./components/ProjectTechs/ProjectTechs";
 import ProjectInfo from "./components/ProjectInfo/ProjectInfo";
@@ -13,7 +13,7 @@ import ProjectDescription from "./components/ProjectDescription/ProjectDescripti
 import ProjectDetailsList from "./components/ProjectDetailsList/ProjectDetailsList";
 import ProjectDetailsListItem from "./components/ProjectDetailsListItem/ProjectDetailsListItem";
 import Gallery from "./components/Gallery/Gallery";
-import GitHubRepo from "./components/GitHubLink/GitHubLink";
+import GitHubRepo from "./components/GitHubRepo/GitHubRepo";
 
 import sgMainMenu from "@/assets/projects/secret-guests/secret_guests_main_menu.png";
 import sgCustomGuestsMenu from "@/assets/projects/secret-guests/secret_guests_custom_guests_menu.png";
