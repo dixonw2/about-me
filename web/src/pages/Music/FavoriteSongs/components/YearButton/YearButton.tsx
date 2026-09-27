@@ -3,14 +3,19 @@ import { type ReactNode } from "react";
 import styles from "./YearButton.module.css";
 
 const YearButton = ({
+  selected = false,
   children,
   onClick,
 }: {
+  selected?: boolean;
   onClick: () => void;
   children: ReactNode;
 }) => {
   return (
-    <button className={styles.button} onClick={onClick}>
+    <button
+      className={`${styles.button} ${selected ? styles.selected : ""}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

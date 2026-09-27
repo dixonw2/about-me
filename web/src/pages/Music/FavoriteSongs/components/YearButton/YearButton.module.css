@@ -1,6 +1,8 @@
 .button {
   border-radius: 0.8rem;
   font-size: 1.5rem;
-  /* width: 3rem;
-  height: 1.5rem; */
+}
+
+.selected {
+  background: rgba(128, 154, 241, 0.2);
 }

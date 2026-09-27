@@ -2,6 +2,11 @@ import type { Song, FavoriteSongsList } from "@/types/FavoriteSongsList";
 
 import styles from "./ListEntry.module.css";
 import { useState } from "react";
+import EntryInfoContainer from "../EntryInfoContainer/EntryInfoContainer";
+import AlbumArtContainer from "../AlbumArtContainer/AlbumArtContainer";
+import AlbumArt from "../AlbumArt/AlbumArt";
+import EntryInfoComment from "../EntryInfoComment/EntryInfoComment";
+import EntryDate from "../EntryDate/EntryDate";
 
 const ListSong = ({
   song,
@@ -62,38 +67,21 @@ const ListEntry = ({ entry }: { entry: FavoriteSongsList }) => {
 
   return (
     <section>
-      <div className={styles.entryTitleContainer}>
-        <h1>{entry.year}</h1>
-        <h2>{new Date(entry.dateCreated).toLocaleDateString()}</h2>
-      </div>
-      {entry.dateUpdated ||
-        (entry.year > 0 && (
-          <h3 className={styles.entryUpdated}>
-            {new Date(
-              entry.dateUpdated ? entry.dateUpdated : "2020-03-06",
-            ).toLocaleDateString()}
-          </h3>
-        ))}
-      <div className={styles.entryCommentContainer}>
-        <div className={styles.albumArtWrapper}>
-          {tempSongArt || currentSongArt ? (
-            <div key={tempSongArt} className={styles.artworkLayer}>
-              <img
-                className={styles.albumCover}
-                src={tempSongArt ? tempSongArt : currentSongArt}
-                alt="Album cover"
-              />
-              <span className={styles.ribbon}>{entry.year}</span>
-            </div>
-          ) : (
-            <div key={tempSongArt} className={styles.blank}>
-              <span className={styles.year}>{entry.year}</span>
-            </div>
-          )}
+      <EntryInfoContainer>
+        <AlbumArtContainer>
+          <AlbumArt
+            src={tempSongArt ? tempSongArt : currentSongArt}
+            year={entry.year}
+          />
+        </AlbumArtContainer>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <EntryDate
+            entryDate={entry.dateCreated}
+            updateDate={entry.dateUpdated}
+          />
+          <EntryInfoComment>{entry.comment}</EntryInfoComment>
         </div>
-
-        <p className={styles.entryComment}>{entry.comment}</p>
-      </div>
+      </EntryInfoContainer>
       <ul className={styles.songList}>
         {entry.songs.map((song) => (
           <ListSong

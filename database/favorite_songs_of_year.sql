@@ -1,13 +1,14 @@
+
 ---------- Create initial list entries ----------
 BEGIN;
 
 CREATE SCHEMA IF NOT EXISTS favorite_songs_of_year;
 
 CREATE TABLE IF NOT EXISTS favorite_songs_of_year.lists (
-                                                            year         INT PRIMARY KEY CHECK (year BETWEEN 1900 AND 2100),
-                                                            comment      TEXT NOT NULL,
-                                                            date_created TIMESTAMPTZ NOT NULL DEFAULT now(),
-                                                            date_updated TIMESTAMPTZ
+    year         INT PRIMARY KEY CHECK (year BETWEEN 1900 AND 2100),
+    comment      TEXT NOT NULL,
+    date_created TIMESTAMPTZ NOT NULL DEFAULT now(),
+    date_updated TIMESTAMPTZ
 );
 
 ---------- Update the date_updated column when the comment is updated ----------
@@ -45,21 +46,21 @@ VALUES
 ON CONFLICT (year) DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS favorite_songs_of_year.songs (
-                                                            id               INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                                                            song_name        TEXT NOT NULL,
-                                                            artist           TEXT NOT NULL,
-                                                            album            TEXT NOT NULL,
-                                                            genre            TEXT NOT NULL,
-                                                            song_length      TIME NOT NULL,
-                                                            apple_music_link TEXT NOT NULL,
-                                                            spotify_link     TEXT NOT NULL,
-                                                            year             INT NOT NULL,
-                                                            is_single        BOOL NOT NULL DEFAULT FALSE,
-                                                            CONSTRAINT uq_favorite_songs_song_artist UNIQUE (song_name, artist),
-                                                            CONSTRAINT fk_favorite_songs_year
-                                                                FOREIGN KEY (year)
-                                                                    REFERENCES favorite_songs_of_year.lists (year)
-                                                                    ON DELETE CASCADE
+    id               INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    song_name        TEXT NOT NULL,
+    artist           TEXT NOT NULL,
+    album            TEXT NOT NULL,
+    genre            TEXT NOT NULL,
+    song_length      TIME NOT NULL,
+    apple_music_link TEXT NOT NULL,
+    spotify_link     TEXT NOT NULL,
+    year             INT NOT NULL,
+    is_single        BOOL NOT NULL DEFAULT FALSE,
+    CONSTRAINT uq_favorite_songs_song_artist UNIQUE (song_name, artist),
+    CONSTRAINT fk_favorite_songs_year
+        FOREIGN KEY (year)
+            REFERENCES favorite_songs_of_year.lists (year)
+            ON DELETE CASCADE
 );
 
 ---------- Initial songs ----------
@@ -124,7 +125,7 @@ VALUES
     ('PRESENCE IS STRENGTH', 'FEVER 333', 'PRESENCE IS STRENGTH - Single', 'Rock', '00:02:42', 'https://music.apple.com/us/album/presence-is-strength/1501840074?i=1501840075', 'https://open.spotify.com/track/7kpYImqzb3AswxjNr1vkeq?si=5408615cb33a4afd', 2020, TRUE),
     ('MAGO', 'GFRIEND', '回:Walpurgis Night', 'K-Pop', '00:03:19', 'https://music.apple.com/us/album/mago/1538729549?i=1538729550', 'https://open.spotify.com/track/46WaBBaEHzgbN88Ew0nh50?si=21407c3e95834d53', 2020, DEFAULT),
     ('Age of Machine', 'Greta Van Fleet', 'The Battle At Garden''s Gate', 'Rock', '00:06:54', 'https://music.apple.com/us/album/age-of-machine/1543007580?i=1543008237', 'https://open.spotify.com/track/6XALorRRo9aQdBIQN0UWyn?si=fc0671ef66e04b87', 2020, TRUE),
-    ('Rolled Down Window', 'John the Ghost', 'For Those That Wish to Exist', 'Alternative', '00:04:04', 'https://music.apple.com/us/album/little-wonder/1533388849?i=1533388858', 'https://open.spotify.com/track/1Td7TGT1XtK2ojUjz1mGUV?si=8cfe9090e1c74da5', 2020, DEFAULT),
+    ('Rolled Down Window', 'John the Ghost', 'I Only Want to Live Once', 'Alternative', '00:04:04', 'https://music.apple.com/us/album/little-wonder/1533388849?i=1533388858', 'https://open.spotify.com/track/1Td7TGT1XtK2ojUjz1mGUV?si=8cfe9090e1c74da5', 2020, DEFAULT),
     ('A Sweeter Place (feat. Kid Cudi)', 'Selena Gomez', 'Rare', 'Pop', '00:04:23', 'https://music.apple.com/us/album/a-sweeter-place-feat-kid-cudi/1488413282?i=1488413386', 'https://open.spotify.com/track/4bb94wZVF1cX66vQjNeJTX?si=ba26a9b500954e9e', 2020, DEFAULT),
     ('Brothers (feat. Eddy Capparelli)', 'SIAMES', 'Home', 'Indie Pop', '00:04:06', 'https://music.apple.com/us/album/brothers-feat-eddy-capparelli/1495889131?i=1495889434', 'https://open.spotify.com/track/2Hla6QVdb2fJhQonnGLksC?si=271d5259de6b42d6', 2020, DEFAULT),
     ('Am I Talking To The Champagne (Or Talking To You)', 'The Struts', 'Strange Days', 'Rock', '00:05:47', 'https://music.apple.com/us/album/am-i-talking-to-the-champagne-or-talking-to-you/1530101176?i=1530101585', 'https://open.spotify.com/track/05h4hfkCzXIVBjju9chzxa?si=5d69cde9f1cc4153', 2020, DEFAULT),
