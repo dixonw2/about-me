@@ -1,5 +1,3 @@
-import styles from "./EntryDate.module.css";
-
 const EntryDate = ({
   entryDate = "",
   updateDate = "",

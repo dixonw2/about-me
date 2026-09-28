@@ -74,7 +74,7 @@ const ListEntry = ({ entry }: { entry: FavoriteSongsList }) => {
             year={entry.year}
           />
         </AlbumArtContainer>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div>
           <EntryDate
             entryDate={entry.dateCreated}
             updateDate={entry.dateUpdated}
@@ -93,6 +93,41 @@ const ListEntry = ({ entry }: { entry: FavoriteSongsList }) => {
           />
         ))}
       </ul>
+      {/* 
+      <iframe
+        allow="autoplay *; encrypted-media *;"
+        height="150"
+        style={{
+          width: "100%",
+          maxWidth: "660px",
+          overflow: "hidden",
+          border: 0,
+          background: "transparent",
+        }}
+        sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+        src="https://embed.music.apple.com/us/album/bear-claws/1710236954?i=1710237207"
+        loading="lazy"
+      ></iframe>
+      <iframe
+        data-testid="embed-iframe"
+        style={{ borderRadius: "12px", border: 0 }}
+        src="https://open.spotify.com/embed/track/7oBPSh4C7vvQ9F1mnyqwVe?utm_source=generator&si=8ee3c9e23e0f49a1"
+        width="100%"
+        height="352"
+        allowFullScreen={false}
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      ></iframe>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/hXoBj5HZ1hU?si=fJLcQp6JSbhTwMRf"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+        loading="lazy"
+      ></iframe> */}
     </section>
   );
 };

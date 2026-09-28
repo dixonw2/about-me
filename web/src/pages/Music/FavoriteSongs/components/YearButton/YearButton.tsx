@@ -13,6 +13,7 @@ const YearButton = ({
 }) => {
   return (
     <button
+      aria-pressed={selected}
       className={`${styles.button} ${selected ? styles.selected : ""}`}
       onClick={onClick}
     >

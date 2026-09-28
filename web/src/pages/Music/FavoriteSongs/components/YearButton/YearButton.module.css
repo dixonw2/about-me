@@ -1,8 +1,36 @@
 .button {
   border-radius: 0.8rem;
   font-size: 1.5rem;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .selected {
   background: rgba(128, 154, 241, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:hover,
+  .button:active {
+    transform: none;
+  }
 }
