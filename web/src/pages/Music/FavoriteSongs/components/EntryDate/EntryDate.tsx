@@ -21,11 +21,9 @@ const EntryDate = ({
         alignContent: "center",
       }}
     >
-      {updateDate && (
-        <h4>
-          Last updated {updatedDateString} {updatedTimeString}
-        </h4>
-      )}
+      <h4 style={{ visibility: updateDate ? "visible" : "hidden" }}>
+        Last updated {updatedDateString} {updatedTimeString}
+      </h4>
       <h3>
         {entryDateString} {entryTimeString}
       </h3>

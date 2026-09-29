@@ -7,6 +7,7 @@ import AlbumArtContainer from "../AlbumArtContainer/AlbumArtContainer";
 import AlbumArt from "../AlbumArt/AlbumArt";
 import EntryInfoComment from "../EntryInfoComment/EntryInfoComment";
 import EntryDate from "../EntryDate/EntryDate";
+import SongCard from "../SongCard/SongCard";
 
 const ListSong = ({
   song,
@@ -68,66 +69,35 @@ const ListEntry = ({ entry }: { entry: FavoriteSongsList }) => {
   return (
     <section>
       <EntryInfoContainer>
-        <AlbumArtContainer>
+        {/* <AlbumArtContainer>
           <AlbumArt
             src={tempSongArt ? tempSongArt : currentSongArt}
             year={entry.year}
           />
-        </AlbumArtContainer>
-        <div>
-          <EntryDate
-            entryDate={entry.dateCreated}
-            updateDate={entry.dateUpdated}
-          />
-          <EntryInfoComment>{entry.comment}</EntryInfoComment>
-        </div>
+        </AlbumArtContainer> */}
+        {/* <div> */}
+        <EntryDate
+          entryDate={entry.dateCreated}
+          // updateDate="2026-03-10"
+          updateDate={entry.dateUpdated}
+        />
+        <EntryInfoComment>{entry.comment}</EntryInfoComment>
+        {/* </div> */}
       </EntryInfoContainer>
-      <ul className={styles.songList}>
+      <ul className={styles.list}>
+        {/* <ul className={styles.songList}> */}
         {entry.songs.map((song) => (
-          <ListSong
-            song={song}
-            key={`${song.artist}-${song.songName}`}
-            onMouseEnter={() => setTempSongArt(getAlbumArtPath(song))}
-            onMouseLeave={() => setTempSongArt("")}
-            onClick={() => setCurrentSongArt(getAlbumArtPath(song))}
-          />
+          // <ListSong
+          //   song={song}
+          //   key={`${song.artist}-${song.songName}`}
+          //   onMouseEnter={() => setTempSongArt(getAlbumArtPath(song))}
+          //   onMouseLeave={() => setTempSongArt("")}
+          //   onClick={() => setCurrentSongArt(getAlbumArtPath(song))}
+          // />
+          // <ListSong key={song.artist} song={song} />
+          <SongCard key={song.artist} song={song} />
         ))}
       </ul>
-      {/* 
-      <iframe
-        allow="autoplay *; encrypted-media *;"
-        height="150"
-        style={{
-          width: "100%",
-          maxWidth: "660px",
-          overflow: "hidden",
-          border: 0,
-          background: "transparent",
-        }}
-        sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-        src="https://embed.music.apple.com/us/album/bear-claws/1710236954?i=1710237207"
-        loading="lazy"
-      ></iframe>
-      <iframe
-        data-testid="embed-iframe"
-        style={{ borderRadius: "12px", border: 0 }}
-        src="https://open.spotify.com/embed/track/7oBPSh4C7vvQ9F1mnyqwVe?utm_source=generator&si=8ee3c9e23e0f49a1"
-        width="100%"
-        height="352"
-        allowFullScreen={false}
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-      ></iframe>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/hXoBj5HZ1hU?si=fJLcQp6JSbhTwMRf"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-        loading="lazy"
-      ></iframe> */}
     </section>
   );
 };

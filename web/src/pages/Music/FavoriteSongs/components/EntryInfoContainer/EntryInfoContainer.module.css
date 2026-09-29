@@ -1,9 +1,9 @@
 .entryInfoContainer {
-  display: grid;
-  grid-template-columns: 192px minmax(0, 1fr);
+  /* display: grid;
+  grid-template-columns: 192px minmax(0, 1fr); */
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  /* gap: 1.5rem; */
+  margin: 0 auto 2rem;
 }
 
 @media (max-width: 640px) {

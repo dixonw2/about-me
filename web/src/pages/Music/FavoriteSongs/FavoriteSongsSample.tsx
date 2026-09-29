@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import styles from "./FavoriteSongs.module.css";
+import styles from "./FavoriteSongsSample.module.css";
 import type { FavoriteSongsList } from "@/types/FavoriteSongsList";
-import ListEntry from "./components/ListEntry/ListEntry";
+import ListEntry from "./components/ListEntry/ListEntrySample";
 import YearsButtonsContainer from "./components/YearsButtonContainer/YearsButtonsContainer";
 import YearButton from "./components/YearButton/YearButton";
 import FavoritesTitleContainer from "./components/FavoritesTitleContainer/FavoritesTitleContainer";
@@ -14,7 +14,7 @@ const FavoriteSongs = () => {
   const [selectedYear, setSelectedYear] = useState<number>(0);
 
   const [loading, setLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState("");
 
   const selectedEntry: FavoriteSongsList | undefined = favoritesList.find(
     (list) => list.year === selectedYear,
@@ -24,16 +24,17 @@ const FavoriteSongs = () => {
     const getLists = async () => {
       try {
         const response = await fetch("/api/music/favorite-songs");
-        if (!response.ok) throw new Error("Could not connect to the server.");
+        if (!response.ok) throw new Error(`API returned ${response.status}`);
         const data = await response.json();
         setFavoritesList(data);
-      } catch (e) {
-        if (e instanceof Error) {
-          setErrorMessage(e.message);
-        } else {
-          console.error(e);
-          setErrorMessage("Unknown error. Please check the console.");
-        }
+        if (data.length)
+          setSelectedYear(
+            Math.max(...data.map((list: FavoriteSongsList) => list.year)),
+          );
+      } catch {
+        setError(
+          "Could not load songs. Start the music API and reload this sample.",
+        );
       } finally {
         setLoading(false);
       }
@@ -48,6 +49,7 @@ const FavoriteSongs = () => {
 
   return (
     <main className={styles.container}>
+      {error && <p role="alert">{error}</p>}
       <FavoritesTitleContainer visible={!selectedEntry}>
         <FavoritesTitle>Favorite Songs of the Year</FavoritesTitle>
         <FavoritesSubtitle>
@@ -57,7 +59,7 @@ const FavoriteSongs = () => {
       <YearsButtonsContainer>
         {loading ? (
           <em>Loading...</em>
-        ) : !errorMessage ? (
+        ) : (
           getYears().map((year) => (
             <YearButton
               key={`button-${year}`}
@@ -71,8 +73,6 @@ const FavoriteSongs = () => {
               {year}
             </YearButton>
           ))
-        ) : (
-          <span>{errorMessage}</span>
         )}
       </YearsButtonsContainer>
       <div key={selectedYear} className={styles.yearContent}>
