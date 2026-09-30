@@ -2,7 +2,9 @@ import { useState } from "react";
 import type { FavoriteSongsList, Song } from "@/types/FavoriteSongsList";
 import styles from "./ListEntrySample.module.css";
 
-type Provider = "apple" | "spotify";
+type Provider = "apple" | "spotify" | "youtube";
+const sampleYouTubeId = "lO9d-AJai8Q";
+const providerNames = { apple: "Apple Music", spotify: "Spotify", youtube: "YouTube" };
 const slug = (value: string) =>
   value === "÷"
     ? value
@@ -14,6 +16,7 @@ const slug = (value: string) =>
         .toLowerCase();
 
 function embedUrl(song: Song, provider: Provider) {
+  if (provider === "youtube") return `https://www.youtube.com/embed/${sampleYouTubeId}`;
   try {
     const url = new URL(
       provider === "apple" ? song.appleMusicLink : song.spotifyLink,
@@ -129,21 +132,21 @@ export default function ListEntrySample({
                   >
                     Spotify
                   </button>
-                  <a
-                    href={`https://www.youtube.com/results?search_query=${encodeURIComponent(`${song.artist} ${song.songName}`)}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Search YouTube for ${song.songName} (new tab)`}
+                  <button
+                    type="button"
+                    aria-expanded={provider === "youtube"}
+                    aria-controls={provider ? panelId : undefined}
+                    onClick={() => select(song.id, "youtube")}
                   >
-                    YouTube ↗
-                  </a>
+                    YouTube
+                  </button>
                 </div>
               </div>
               {provider && (
                 <div id={panelId} className={styles.player}>
                   <div className={styles.playerHeading}>
                     <span>
-                      {provider === "apple" ? "Apple Music" : "Spotify"}
+                      {providerNames[provider]}
                     </span>
                     <button type="button" onClick={() => setActive(null)}>
                       Close player ×
@@ -153,9 +156,12 @@ export default function ListEntrySample({
                     <iframe
                       key={`${song.id}-${provider}`}
                       src={src}
-                      title={`${song.songName} — ${provider === "apple" ? "Apple Music" : "Spotify"}`}
+                      title={provider === "youtube" ? "YouTube sample video" : `${song.songName} — ${providerNames[provider]}`}
+                      className={provider === "youtube" ? styles.video : undefined}
                       height={provider === "apple" ? 175 : 152}
                       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
                     />
                   ) : (
                     <p>An embedded player is unavailable for this link.</p>
@@ -164,12 +170,14 @@ export default function ListEntrySample({
                     href={
                       provider === "apple"
                         ? song.appleMusicLink
-                        : song.spotifyLink
+                        : provider === "spotify"
+                          ? song.spotifyLink
+                          : `https://www.youtube.com/watch?v=${sampleYouTubeId}`
                     }
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Open in {provider === "apple" ? "Apple Music" : "Spotify"} ↗
+                    Open in {providerNames[provider]} ↗
                   </a>
                 </div>
               )}

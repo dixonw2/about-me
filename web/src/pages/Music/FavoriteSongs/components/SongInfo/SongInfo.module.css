@@ -20,14 +20,16 @@
   font-size: 0.9rem;
 }
 
-.isSingle {
-    
-}
-
 .metadata {
   display: flex;
   gap: 0.6rem;
   margin-top: 0.6rem;
   font-size: 0.8rem;
   color: #58636a;
+}
+
+@media (max-width: 640px) {
+  .info h3 {
+    font-size: 1.1rem;
+  }
 }

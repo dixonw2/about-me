@@ -184,6 +184,11 @@
   font-size: 0.8rem;
   color: #294f43;
 }
+
+.player .video {
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
 @media (hover: hover) {
   .card:hover {
     border-color: #95aaa2;

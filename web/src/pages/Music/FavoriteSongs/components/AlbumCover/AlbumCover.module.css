@@ -1,6 +1,6 @@
 .cover {
   aspect-ratio: 1;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   overflow: hidden;
   display: grid;
   place-items: center;
