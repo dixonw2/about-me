@@ -9,6 +9,7 @@ from sqlalchemy import (
     DateTime,
     FetchedValue,
     Text,
+    Boolean,
     func,
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -32,9 +33,11 @@ class Song(Base):
     song_length: Mapped[time]
     apple_music_link: Mapped[str] = mapped_column(Text)
     spotify_link: Mapped[str] = mapped_column(Text)
+    youtube_link: Mapped[str] = mapped_column(Text)
     year: Mapped[int] = mapped_column(
         ForeignKey("favorite_songs_of_year.lists.year", ondelete="CASCADE")
     )
+    is_single: Mapped[bool] = mapped_column(Boolean, default=False)
 
     yearly_list: Mapped["YearlyList"] = relationship(back_populates="songs")
 
@@ -47,6 +50,8 @@ class SongBase(AboutMeModel):
     song_length: time
     apple_music_link: str
     spotify_link: str
+    youtube_link: str
+    is_single: bool
 
 
 class SongInListRead(SongBase):

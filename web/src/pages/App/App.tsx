@@ -142,7 +142,7 @@ const Skills = () => {
       <div className={styles.entry}>
         <ul className={styles.details}>
           <li>
-            <b>Languages:</b>Java, C#, Python, JavaScript, TypeScript
+            <b>Languages:</b> Java, C#, Python, JavaScript, TypeScript
           </li>
           <li>
             <b>Technologies:</b> React, HTML/CSS, RESTful APIs (FastAPI),

@@ -1,0 +1,35 @@
+.info {
+  min-width: 0;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.artist {
+  margin: 0.3rem 0;
+  font-weight: 600;
+}
+
+.album {
+  margin: 0;
+  color: #58636a;
+  font-size: 0.9rem;
+}
+
+.metadata {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #58636a;
+}
+
+@media (max-width: 640px) {
+  .info h3 {
+    font-size: 1.1rem;
+  }
+}

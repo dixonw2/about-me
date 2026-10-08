@@ -1,0 +1,9 @@
+.infoContainer {
+  max-width: 70ch;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.infoContainer li + li {
+  margin-top: 0.5rem;
+}

@@ -1,4 +1,4 @@
-import styles from "./GitHubLink.module.css";
+import styles from "./GitHubRepo.module.css";
 
 const GitHubRepo = ({ src }: { src: string }) => {
   return (

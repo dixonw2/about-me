@@ -1,0 +1,28 @@
+.container {
+  composes: container from global;
+}
+
+.yearContent {
+  animation: yearEnter 360ms ease-out;
+}
+
+@keyframes yearEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .introHeader {
+    transition: none;
+  }
+
+  .yearContent {
+    animation: none;
+  }
+}

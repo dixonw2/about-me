@@ -9,6 +9,7 @@ import "@/index.css";
 import App from "@/pages/App/App";
 import Projects from "@/pages/Projects/Projects";
 import Navbar from "@/components/layout/Navbar/Navbar";
+import FavoriteSongs from "@/pages/Music/FavoriteSongs/FavoriteSongs";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
       <Navbar />
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/music/favorite-songs" element={<FavoriteSongs />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
     </BrowserRouter>
