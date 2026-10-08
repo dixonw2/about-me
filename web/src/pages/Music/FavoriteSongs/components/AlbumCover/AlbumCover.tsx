@@ -14,6 +14,7 @@ const sanitizeString = (value: string) =>
 
 const AlbumCover = ({ song }: { song: Song }) => {
   const [failed, setFailed] = useState(false);
+
   return (
     <div className={styles.cover}>
       {failed ? (

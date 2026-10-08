@@ -4,7 +4,7 @@
 
 .info h3 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1.25;
   overflow-wrap: anywhere;
 }
@@ -23,7 +23,7 @@
 .metadata {
   display: flex;
   gap: 0.6rem;
-  margin-top: 0.6rem;
+  margin-top: 1rem;
   font-size: 0.8rem;
   color: #58636a;
 }

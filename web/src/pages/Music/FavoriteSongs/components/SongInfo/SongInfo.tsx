@@ -5,6 +5,7 @@ const SongInfo = ({ song }: { song: Song }) => {
   return (
     <div className={styles.info}>
       <h3>{song.songName}</h3>
+      <hr />
       <p className={styles.artist}>{song.artist}</p>
       <p className={styles.album}>
         {song.album}

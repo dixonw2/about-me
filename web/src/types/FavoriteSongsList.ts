@@ -7,6 +7,7 @@ export interface Song {
   songLength: string;
   appleMusicLink: string;
   spotifyLink: string;
+  youtubeLink: string;
   isSingle: boolean;
 }
 
