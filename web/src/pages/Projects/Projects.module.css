@@ -9,3 +9,8 @@
   border-bottom: 2px solid var(--alt-accent);
   margin-bottom: 0.75rem;
 }
+
+img.dankVoidThumbnail {
+  width: 7.5rem;
+  height: 7.5rem;
+}
