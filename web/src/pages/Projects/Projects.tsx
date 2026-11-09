@@ -15,6 +15,7 @@ import ProjectDetailsListItem from "./components/ProjectDetailsListItem/ProjectD
 import Gallery from "./components/Gallery/Gallery";
 import GitHubRepo from "./components/GitHubRepo/GitHubRepo";
 
+import dvLogo from "@/assets/projects/dank-void/dankvoid-logo.png";
 import sgMainMenu from "@/assets/projects/secret-guests/secret_guests_main_menu.png";
 import sgCustomGuestsMenu from "@/assets/projects/secret-guests/secret_guests_custom_guests_menu.png";
 import sbbMainMenu from "@/assets/projects/shinras-better-bestiary/sbbMainMenu.png";
@@ -66,6 +67,66 @@ const AboutMe = () => {
           </ProjectDetailsListItem>
         </ProjectDetailsList>
         <GitHubRepo src="https://github.com/dixonw2/about-me" />
+      </ProjectBody>
+    </ProjectCard>
+  );
+};
+
+const DankVoid = () => {
+  const thumbnail = { src: dvLogo, alt: "/dank/void logo" };
+
+  return (
+    <ProjectCard>
+      <ProjectPreviewContainer>
+        <ProjectHeading>
+          <ProjectName>/dank/void</ProjectName>
+          <ProjectTechs techs={["Java"]} />
+        </ProjectHeading>
+        <ProjectInfo>
+          <ProjectThumbnail
+            image={thumbnail}
+            className={styles.dankVoidThumbnail}
+          />
+          <ProjectSummary
+            features={[
+              "Minecraft 1.12.2",
+              "Forge",
+              "Storage",
+              "Quality of Life",
+            ]}
+          >
+            A continuation of /dank/null by p455w0rd, fixing bugs and adding
+            features.
+          </ProjectSummary>
+        </ProjectInfo>
+      </ProjectPreviewContainer>
+      <ProjectBody>
+        <ProjectDescription>
+          <a href="https://www.curseforge.com/minecraft/mc-mods/dank-null">
+            /dank/null
+          </a>{" "}
+          is a Minecraft mod by p455w0rd that adds "danks," which are containers
+          that can hold much more than a single stack of items per slot. The mod
+          hasn't had an update since May 2020, so I created this to continue it,
+          with the goal being to fix bugs, add features, and eventually rewrite
+          the mod while still maintaining backwards compatibility.
+          <br /> <br />
+          So far, I have added features like automatic sorting and HUD
+          repositioning and fixed bugs like an integer overflow deleting all
+          items in a slot and a critical RCE vulnerability. The full list of
+          changes can be found in the README on GitHub.
+        </ProjectDescription>
+        <ProjectDetailsList>
+          <ProjectDetailsListItem>
+            v2.0.0 and above will be a complete rewrite of /dank/null.
+          </ProjectDetailsListItem>
+          {/* TODO: Once a Project Service has been made, or something like that,
+             make this update automatically using an API key. */}
+          <ProjectDetailsListItem>
+            Currently has over 80 downloads!
+          </ProjectDetailsListItem>
+        </ProjectDetailsList>
+        <GitHubRepo src="https://github.com/dixonw2/DankVoid" />
       </ProjectBody>
     </ProjectCard>
   );
@@ -291,6 +352,7 @@ const Projects = () => {
     <main className={styles.container}>
       <h1 className={styles.pageHeader}>Projects</h1>
       <AboutMe />
+      <DankVoid />
       <SecretGuests />
       <ShinrasBetterBestiary />
       <HeretechsUtil />
